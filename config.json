@@ -1,0 +1,14 @@
+{
+  "data_dir": "./data",
+  "labels": "./data/labels.txt",
+  "model_name_or_path": "bert-base-chinese",
+  "output_dir": "model",
+  "max_seq_length": 128,
+  "num_train_epochs": 3,
+  "per_device_train_batch_size": 32,
+  "save_steps": 750,
+  "seed": 1,
+  "do_train": true,
+  "do_eval": true,
+  "do_predict": true
+}

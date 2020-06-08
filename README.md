@@ -21,7 +21,7 @@ Input: 在福特的帮助下，阿瑟·登特在地球被毁灭前的最后一�
 ## 结果
 |结构|dev recall|dev precision|dev f1|test recall|test precision|test f1|
 |----|----------|-------------|------|-----------|-------------|-------|
-|BertForTokenClassification(a linear layer on top of the Bert hidden-states)|0.959|0.951|0.955|0.956|0.942|0.949|
+|[BertForTokenClassification](https://github.com/huggingface/transformers/blob/1b5820a56540a2096daeb43a0cd8247c8c94a719/src/transformers/modeling_bert.py#L1296)(a linear layer on top of the Bert hidden-states)|0.959|0.951|0.955|0.956|0.942|0.949|
 |Bert + BiLSTM|
 |Bert + BiLSTM + CRF|
 

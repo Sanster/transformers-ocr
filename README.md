@@ -1,13 +1,16 @@
 参考链接：
+
 - https://github.com/macanv/BERT-BiLSTM-CRF-NER
 - https://github.com/huggingface/transformers/tree/master/examples/token-classification
 
 ## 启动训练
+
 ```bash
 python -X utf8 run_ner.py config.json
 ```
 
 ## 测试
+
 ```bash
 python predict.py
 
@@ -19,16 +22,19 @@ Input: 在福特的帮助下，阿瑟·登特在地球被毁灭前的最后一�
 ```
 
 ## 结果
-|结构|dev recall|dev precision|dev f1|test recall|test precision|test f1|
-|----|----------|-------------|------|-----------|-------------|-------|
-|[BertForTokenClassification](https://github.com/huggingface/transformers/blob/1b5820a56540a2096daeb43a0cd8247c8c94a719/src/transformers/modeling_bert.py#L1296)(a linear layer on top of the Bert hidden-states)|0.959|0.951|0.955|0.956|0.942|0.949|
-|Bert + BiLSTM|
-|Bert + BiLSTM + CRF|
+
+| 结构                                                                                                                                                                                                             | dev recall | dev precision | dev f1 | test recall | test precision | test f1 |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ------------- | ------ | ----------- | -------------- | ------- |
+| [BertForTokenClassification](https://github.com/huggingface/transformers/blob/1b5820a56540a2096daeb43a0cd8247c8c94a719/src/transformers/modeling_bert.py#L1296)(a linear layer on top of the Bert hidden-states) | 0.959      | 0.951         | 0.955  | 0.956       | 0.942          | 0.949   |
+| Bert + BiLSTM                                                                                                                                                                                                    |
+| Bert + BiLSTM + CRF                                                                                                                                                                                              |
 
 ## 训练数据
+
 训练数据来自：https://github.com/zjy-ucas/ChineseNER
 
 把训练集(train.txt)，验证集(dev.txt)和测试集合(test.txt)放在同一个文件夹，文件内容格式如下，多个样本之间以空白行分隔：
+
 ```
 海 O
 钓 O
@@ -68,7 +74,24 @@ Input: 在福特的帮助下，阿瑟·登特在地球被毁灭前的最后一�
 ```
 
 如何从训练集生成 `labels.txt`:
+
 ```bash
 cat train.txt dev.txt test.txt | cut -d " " -f 2 | grep -v "^$"| sort | uniq > labels.txt
 ```
 
+## PerceiverIO
+
+```
+python3 run_perceiver_ner.py \
+--dataset_name conll2003 \
+--output_dir /tmp/perceiver_io_ner \
+--logging_steps 50 \
+--num_train_epochs 50 \
+--learning_rate 0.00005 \
+--per_device_train_batch_size 32 \
+--d_latents 768 \
+--d_model 768 \
+--do_train \
+--do_eval \
+--fp16
+```
